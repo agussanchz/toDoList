@@ -17,7 +17,11 @@ export default function Form() {
     // Enviar lista con el valor del input y un id random
     const handleSubmit = (e) => {
         e.preventDefault()
-        console.log(inputValue.id)
+        
+        if(inputValue === "" || inputValue === null || inputValue === undefined){
+            return alert("El campo es incorrecto, porfavor vuelva a escribirlo. Gracias", e.target.reset())
+        }
+
         setList([
             ...list,
             {
@@ -35,6 +39,11 @@ export default function Form() {
         setList(newList)
     }
 
+    // Elimitar todas las notas
+    const removeAll = () => {
+        setList([])
+    }
+
     return (
         <>
             <form onSubmit={handleSubmit}>
@@ -47,7 +56,7 @@ export default function Form() {
                 />
                 <button type='submit'>Agregar nota</button>
             </form>
-            <Cards notas={list} removeFromList={removeFromList}/>
+            <Cards notas={list} removeFromList={removeFromList} removeAll={removeAll}/>
         </>
     )
 }

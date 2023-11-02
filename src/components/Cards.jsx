@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function Cards({ notas, removeFromList }) {
+export default function Cards({ notas, removeFromList, removeAll }) {
     return (
        <>
         {notas.map((content) => (
@@ -9,6 +9,7 @@ export default function Cards({ notas, removeFromList }) {
                 <button className='notas-button' onClick={() => removeFromList(content.id)}>X</button>
             </div>
         ))}
+        {notas != '' ? <button className='reset-button' onClick={() => removeAll()}>Resetear todo</button> : ""}
        </>
     )
 }
